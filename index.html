@@ -820,33 +820,6 @@
     renderRelatorio();
   }
 
-  /* ===== LOGIN / LOGOUT ===== */
-  document.getElementById('loginForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    var userEl = document.getElementById('loginUser');
-    var passEl = document.getElementById('loginPass');
-    var genErr = document.getElementById('loginGeneralError');
-    clearError(userEl, 'loginUserError');
-    clearError(passEl, 'loginPassError');
-    genErr.textContent = '';
-
-    var valid = true;
-    if(!userEl.value.trim()){ setError(userEl, 'loginUserError', 'Informe o usuário.'); valid = false; }
-    if(!passEl.value){ setError(passEl, 'loginPassError', 'Informe a senha.'); valid = false; }
-    if(!valid) return;
-
-    if(userEl.value.trim() === 'marianasantana' && passEl.value === '31052021'){
-      try{ sessionStorage.setItem(SS_LOGIN, 'true'); }catch(err){ console.error(err); }
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('appScreen').style.display = 'block';
-      loadData();
-      renderAll();
-    } else {
-      genErr.textContent = 'Usuário ou senha incorretos.';
-      passEl.value = '';
-    }
-  });
-
   document.getElementById('logoutBtn').addEventListener('click', function(){ location.reload(); });
 
   /* ===== BOOTSTRAP ===== */
